@@ -51,6 +51,7 @@ dev_pkgs=(
 	make
 	jq
 	yq
+	github-cli
 )
 
 nvim_pkgs=(
