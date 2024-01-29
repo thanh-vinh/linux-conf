@@ -208,7 +208,7 @@ main() {
 	install 'Neovim packages?' "${nvim_pkgs[@]}"
 
 	# # Tmux plugin manager
-	install_git tmux-plugins/tpm "$HOME/.tmux/plugins/tpm tmux"
+	install_git tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 	#
 	# # Multiple runtime version manager
 	install_git asdf-vm/asdf.git "$HOME/.asdf"
@@ -221,6 +221,8 @@ main() {
 
 	# Copy config dirs
 	copy_dirs "./home/.config" "$HOME/.config"
+
+	echo '==> Done!'
 }
 
 main "$*"

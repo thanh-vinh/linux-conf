@@ -1,0 +1,7 @@
+pane	gkgen	0	0	:	0	~/p/gkgen	:/home/vinh/projects/gkgen	1	fish	:
+pane	gkgen	1	0	:-	0	~/p/gkgen	:/home/vinh/projects/gkgen	1	fish	:
+pane	gkgen	2	1	:*	0	~/p/gkgen	:/home/vinh/projects/gkgen	1	fish	:
+window	gkgen	0	:main	0	:	b6fd,124x14,0,0,0	off
+window	gkgen	1	:fmt	0	:-	b6fe,124x14,0,0,1	off
+window	gkgen	2	:sample	1	:*	b6ff,124x14,0,0,2	off
+state	gkgen	
