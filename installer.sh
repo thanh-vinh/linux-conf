@@ -36,7 +36,8 @@ email_pkgs=(
 )
 
 office_pkgs=(
-	onlyoffice-bin
+	libreoffice-fresh
+	# onlyoffice-bin
 )
 
 dev_pkgs=(
