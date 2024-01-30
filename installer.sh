@@ -23,6 +23,7 @@ keyboard_pkgs=(
 terminal_pkgs=(
 	fish
 	xfce4-terminal
+	ttf-jetbrains-mono-nerd
 	tmux
 )
 
@@ -51,6 +52,7 @@ dev_pkgs=(
 	make
 	jq
 	yq
+	xclip
 	github-cli
 )
 
