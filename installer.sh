@@ -11,6 +11,13 @@ common_pkgs=(
 
 	# Pacman Frontend
 	# octopi
+
+	# Disk (mount, benchmark, iso)
+	gnome-disk-utility
+	# Emulator
+	qemu-desktop
+	# Windows
+	bottles
 )
 
 keyboard_pkgs=(
