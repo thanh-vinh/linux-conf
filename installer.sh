@@ -15,9 +15,15 @@ common_pkgs=(
 	# Disk (mount, benchmark, iso)
 	gnome-disk-utility
 	# Emulator
-	qemu-desktop
+	# qemu-desktop
 	# Windows
-	bottles
+	# bottles
+
+	# Brightness
+	brightnessctl
+
+	#i3wm
+	autotiling
 )
 
 keyboard_pkgs=(
@@ -35,12 +41,12 @@ terminal_pkgs=(
 )
 
 message_pkgs=(
-	telegram-desktop
-	mailspring-bin
+	telegram-desktop-bin
 )
 
 email_pkgs=(
-	mailspring-bin
+	geary
+	# mailspring-bin
 )
 
 office_pkgs=(
@@ -121,7 +127,7 @@ install() {
 			if ${dryrun}; then
 				echo "yay -S ${pkg}"
 			else
-				yay -S "${pkg}"
+				yay -S --noconfirm "${pkg}"
 			fi
 		fi
 	done
@@ -179,7 +185,10 @@ copy_files() {
 			echo "Copy ${destDir}/${f}"
 		else
 			rm -rf "${destDir}/${f}.backup"
-			mv "${destDir}/${f}" "${destDir}/${f}.backup"
+			if [ -f "${destDir}/${f}" ]; then
+				mv "${destDir}/${f}" "${destDir}/${f}.backup"
+			fi
+
 			cp "${srcDir}/${f}" "${destDir}/${f}"
 		fi
 	done
