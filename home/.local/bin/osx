@@ -1,5 +1,8 @@
 #!/bin/sh
 
-cd /run/media/vinh/SYSTEM/OSX/
-./OpenCore-Boot.sh &
+cd $HOME/OSX-KVM
+# ./OpenCore-Boot.sh &
+./boot-macOS-headless.sh &
 
+sleep 3
+vncviewer localhost:5901 &

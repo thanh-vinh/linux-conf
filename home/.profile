@@ -25,3 +25,6 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$HOME/.car
 
 # OpenAI cli
 # export OPENAI_KEY=
+
+# An issue with webkit2gtk being broken under 2.44 with Nvidia GPUs
+# export WEBKIT_DISABLE_DMABUF_RENDERER=1
