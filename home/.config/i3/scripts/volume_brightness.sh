@@ -25,7 +25,7 @@ function get_brightness {
 	# brightnessctl g
 	current=$(brightnessctl g)
 	max=$(brightnessctl m)
-	echo $((current * 100 / max + 1))
+	echo $((current * 100 / max))
 }
 
 # Returns a mute icon, a volume-low icon, or a volume-high icon, depending on the volume
