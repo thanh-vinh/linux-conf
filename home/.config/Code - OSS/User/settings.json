@@ -1,12 +1,17 @@
 {
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
   "workbench.colorTheme": "Catppuccin Mocha",
   "git.openRepositoryInParentFolders": "never",
+  "security.workspace.trust.untrustedFiles": "open",
   "editor.minimap.enabled": false,
   "git.autofetch": true,
   "extensions.ignoreRecommendations": true,
   "svelte.enable-ts-plugin": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "redhat.telemetry.enabled": false,
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "workbench.startupEditor": "none"
 }
