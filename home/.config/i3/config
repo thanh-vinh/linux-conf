@@ -1,4 +1,4 @@
-# exec --no-startup-id ~/set_once.sh
+exec --no-startup-id ~/set_once.sh
 # This file is a modified version based on default i3-config-wizard config
 # source is available here:
 # https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/config
@@ -71,16 +71,16 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # switch to workspace
-bindsym $mod+1    workspace  $ws1
-bindsym $mod+2    workspace  $ws2
-bindsym $mod+3    workspace  $ws3
-bindsym $mod+4    workspace  $ws4
-bindsym $mod+5    workspace  $ws5
-bindsym $mod+6    workspace  $ws6
-bindsym $mod+7    workspace  $ws7
-bindsym $mod+8    workspace  $ws8
-bindsym $mod+9    workspace  $ws9
-bindsym $mod+0    workspace  $ws10
+bindcode $mod+10    workspace  $ws1
+bindcode $mod+11    workspace  $ws2
+bindcode $mod+12    workspace  $ws3
+bindcode $mod+13    workspace  $ws4
+bindcode $mod+14    workspace  $ws5
+bindcode $mod+15    workspace  $ws6
+bindcode $mod+16    workspace  $ws7
+bindcode $mod+17    workspace  $ws8
+bindcode $mod+18    workspace  $ws9
+bindcode $mod+19    workspace  $ws10
 
 # switch to workspace with numpad keys
 bindcode $mod+87 workspace $ws1
@@ -107,16 +107,16 @@ bindcode $mod+Mod2+81 workspace $ws9
 bindcode $mod+Mod2+90 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1    move container to workspace  $ws1
-bindsym $mod+Shift+2    move container to workspace  $ws2
-bindsym $mod+Shift+3    move container to workspace  $ws3
-bindsym $mod+Shift+4    move container to workspace  $ws4
-bindsym $mod+Shift+5    move container to workspace  $ws5
-bindsym $mod+Shift+6    move container to workspace  $ws6
-bindsym $mod+Shift+7    move container to workspace  $ws7
-bindsym $mod+Shift+8    move container to workspace  $ws8
-bindsym $mod+Shift+9    move container to workspace  $ws9
-bindsym $mod+Shift+0    move container to workspace  $ws10
+bindcode $mod+Shift+10    move container to workspace  $ws1
+bindcode $mod+Shift+11    move container to workspace  $ws2
+bindcode $mod+Shift+12    move container to workspace  $ws3
+bindcode $mod+Shift+13    move container to workspace  $ws4
+bindcode $mod+Shift+14    move container to workspace  $ws5
+bindcode $mod+Shift+15    move container to workspace  $ws6
+bindcode $mod+Shift+16    move container to workspace  $ws7
+bindcode $mod+Shift+17    move container to workspace  $ws8
+bindcode $mod+Shift+18    move container to workspace  $ws9
+bindcode $mod+Shift+19    move container to workspace  $ws10
 
 # move focused container to workspace with numpad keys
 bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
@@ -144,23 +144,23 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 # resize window (you can also use the mouse for that):
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
-	# Pressing left will shrink the window's width.
-	# Pressing right will grow the window's width.
-	# Pressing up will shrink the window's height.
-	# Pressing down will grow the window's height.
+# These bindings trigger as soon as you enter the resize mode
+# Pressing left will shrink the window's width.
+# Pressing right will grow the window's width.
+# Pressing up will shrink the window's height.
+# Pressing down will grow the window's height.
 #        bindsym h resize shrink width 10 px or 10 ppt
 #        bindsym j resize grow height 10 px or 10 ppt
 #        bindsym k resize shrink height 10 px or 10 ppt
 #        bindsym l resize grow width 10 px or 10 ppt
 
-	# same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
 	bindsym Left resize shrink width 10 px or 10 ppt
 	bindsym Down resize grow height 10 px or 10 ppt
 	bindsym Up resize shrink height 10 px or 10 ppt
 	bindsym Right resize grow width 10 px or 10 ppt
 
-	# back to normal: Enter or Escape
+# back to normal: Enter or Escape
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
@@ -278,8 +278,8 @@ bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightnes
 bindsym XF86AudioMicMute exec amixer sset Capture toggle
 
 # audio control
-bindsym XF86AudioPlay exec --no-startup-id playerctl play
-bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause 
+# Above line will also work for pausing
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
@@ -336,10 +336,10 @@ set $ws10 "10"
 
 # bind program to workspace and focus to them on startup:
 # assign [class="Xfce4-terminal"] $ws1
-# assign [class="(?i)firefox"] $ws1
+assign [class="(?i)firefox"] $ws1
 # assign [class="Thunar"] $ws3
 # assign [class="thunderbird"] $ws4
-# assign [class="TelegramDesktop"] $ws5
+assign [class="TelegramDesktop"] $ws1
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Xfce4-terminal] focus
@@ -535,26 +535,26 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-	font pango: Noto Sans Regular 10
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position bottom
-	#	i3bar_command i3bar --transparency
-	# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-	# reference: https://i3wm.org/docs/userguide.html#_tray_output
-	#tray_output primary
-	tray_padding 0
+		font pango: Noto Sans Regular 10
+		status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	    	position bottom
+#	    	i3bar_command i3bar --transparency
+# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+# reference: https://i3wm.org/docs/userguide.html#_tray_output
+		    #tray_output primary
+		    tray_padding 0
 
-	# When strip_workspace_numbers is set to yes,
-	# any workspace that has a name of the form
-	# “[n][:][NAME]” will display only the name.
-	strip_workspace_numbers yes
-	##strip_workspace_name no
+# When strip_workspace_numbers is set to yes,
+# any workspace that has a name of the form
+# “[n][:][NAME]” will display only the name.
+strip_workspace_numbers yes
+##strip_workspace_name no
 
-	colors {
-		separator          $purple
-		background         $darkgrey
-		statusline         $white
-		# border 		        bg		txt		indicator
+		    colors {
+		    separator          $purple
+		    background         $darkgrey
+		    statusline         $white
+#                          		border 		        bg		txt		indicator
 		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
