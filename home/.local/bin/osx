@@ -1,6 +1,11 @@
 #!/bin/sh
 
-cd $HOME/OSX-KVM
+dir="${OSX-KVM:$HOME/OSX-KVM}"
+
+echo "Launch OSX-KVM in: ${dir}"
+
+cd "${dir}" || exit 1
+
 # ./OpenCore-Boot.sh &
 ./boot-macOS-headless.sh &
 
