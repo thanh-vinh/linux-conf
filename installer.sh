@@ -5,243 +5,244 @@ set -eu
 dryrun=false
 
 common_pkgs=(
-	htop
-	btop
-	ncdu
+  htop
+  btop
+  ncdu
 
-	# Pacman Frontend
-	# octopi
+  # Pacman Frontend
+  # octopi
 
-	# Disk (mount, benchmark, iso)
-	gnome-disk-utility
-	# Emulator
-	# qemu-desktop
-	# Windows
-	# bottles
+  # Disk (mount, benchmark, iso)
+  gnome-disk-utility
+  # Emulator
+  # qemu-desktop
+  # Windows
+  # bottles
 
-	# Brightness
-	brightnessctl
+  # Brightness
+  brightnessctl
 
-	#i3wm
-	autotiling
+  #i3wm
+  autotiling
 )
 
 keyboard_pkgs=(
-	fcitx5-unikey
-	fcitx5-gtk
-	fcitx5-qt
-	fcitx5-configtool
+  fcitx5-unikey
+  fcitx5-gtk
+  fcitx5-qt
+  fcitx5-configtool
 )
 
 terminal_pkgs=(
-	fish
-	xfce4-terminal
-	ttf-jetbrains-mono-nerd
-	tmux
+  fish
+  xfce4-terminal
+  ttf-jetbrains-mono-nerd
+  tmux
 )
 
 message_pkgs=(
-	telegram-desktop-bin
+  telegram-desktop-bin
 )
 
 email_pkgs=(
-	geary
-	# mailspring-bin
+  evolution
+  #geary
+  # mailspring-bin
 )
 
 office_pkgs=(
-	libreoffice-fresh
-	# onlyoffice-bin
+  libreoffice-fresh
+  # onlyoffice-bin
 )
 
 dev_pkgs=(
-	code
-	doublecmd-qt6
-	bcompare
-	podman
-	kubectl
-	helm
-	k9s
-	make
-	jq
-	yq
-	xclip
-	github-cli
+  code
+  doublecmd-qt6
+  bcompare
+  podman
+  kubectl
+  helm
+  k9s
+  make
+  jq
+  yq
+  xclip
+  github-cli
 )
 
 nvim_pkgs=(
-	neovim
-	lazygit
-	ripgrep
-	fzd
-	luarocks
+  neovim
+  lazygit
+  ripgrep
+  fzd
+  luarocks
 )
 
 ask() {
-	msg=$*
-	printf "%s [Y/n] " "${msg}"
-	read -r ok
-	ok=${ok:-Y}
+  msg=$*
+  printf "%s [Y/n] " "${msg}"
+  read -r ok
+  ok=${ok:-Y}
 
-	if [ "${ok}" == 'Y' ]; then
-		return 0 # 0 = true
-	fi
+  if [ "${ok}" == 'Y' ]; then
+    return 0 # 0 = true
+  fi
 
-	return 1 # 1 = false
+  return 1 # 1 = false
 }
 
 # Install packages: install <message> <package1... package2...>
 install() {
-	msg=$1
-	shift
-	packages=("$@")
+  msg=$1
+  shift
+  packages=("$@")
 
-	if ! ask "${msg}"; then
-		return 0
-	fi
+  if ! ask "${msg}"; then
+    return 0
+  fi
 
-	index=0
-	for pkg in "${packages[@]}"; do
-		index=$((index + 1))
-		echo "${index}. ${pkg}"
-	done
+  index=0
+  for pkg in "${packages[@]}"; do
+    index=$((index + 1))
+    echo "${index}. ${pkg}"
+  done
 
-	excludes=()
-	echo '==> Packages to exclude (eg: 1 2 3)'
-	printf '==> '
-	read -r excludes
+  excludes=()
+  echo '==> Packages to exclude (eg: 1 2 3)'
+  printf '==> '
+  read -r excludes
 
-	index=0
-	for pkg in "${packages[@]}"; do
-		index=$((index + 1))
+  index=0
+  for pkg in "${packages[@]}"; do
+    index=$((index + 1))
 
-		ok=true
-		for excl in ${excludes}; do
-			if [ "${index}" = "${excl}" ]; then
-				ok=false
-				break
-			fi
-		done
+    ok=true
+    for excl in ${excludes}; do
+      if [ "${index}" = "${excl}" ]; then
+        ok=false
+        break
+      fi
+    done
 
-		if ${ok}; then
-			if ${dryrun}; then
-				echo "yay -S ${pkg}"
-			else
-				yay -S --noconfirm "${pkg}"
-			fi
-		fi
-	done
+    if ${ok}; then
+      if ${dryrun}; then
+        echo "yay -S ${pkg}"
+      else
+        yay -S --noconfirm "${pkg}"
+      fi
+    fi
+  done
 }
 
 install_git() {
-	src=$1
-	des=$2
-	exec="${3:-}"
+  src=$1
+  des=$2
+  exec="${3:-}"
 
-	if [ -n "${exec}" ]; then
-		if [ ! -x "$(command -v "${exec}")" ]; then
-			echo 'not found'
-			exit
-		fi
-	fi
+  if [ -n "${exec}" ]; then
+    if [ ! -x "$(command -v "${exec}")" ]; then
+      echo 'not found'
+      exit
+    fi
+  fi
 
-	if [ ! -d "${des}" ]; then
-		if ${dryrun}; then
-			echo "git clone https://github.com/${src} ${des}"
-		else
-			git clone "https://github.com/${src}" "${des}"
-		fi
-	fi
+  if [ ! -d "${des}" ]; then
+    if ${dryrun}; then
+      echo "git clone https://github.com/${src} ${des}"
+    else
+      git clone "https://github.com/${src}" "${des}"
+    fi
+  fi
 }
 
 setup_asdf() {
-	source "$HOME/.asdf/asdf.sh"
+  source "$HOME/.asdf/asdf.sh"
 
-	# Asdf plugins
-	asdf update
-	asdf plugin add nodejs
-	asdf plugin add golang
-	asdf plugin add rust
-	asdf plugin add flutter
+  # Asdf plugins
+  asdf update
+  asdf plugin add nodejs
+  asdf plugin add golang
+  asdf plugin add rust
+  asdf plugin add flutter
 
-	# Autocomplete for fish
-	mkdir -p ~/.config/fish/completions
-	ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions/
+  # Autocomplete for fish
+  mkdir -p ~/.config/fish/completions
+  ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions/
 }
 
 copy_files() {
-	srcDir="$1"
-	destDir="$2"
+  srcDir="$1"
+  destDir="$2"
 
-	files=$(ls -ap "${srcDir}" | grep -v /)
-	for f in ${files}; do
-		if [ -f "${destDir}/${f}" ]; then
-			if ! ask "Do you want overwrite ${f}?"; then
-				continue
-			fi
-		fi
+  files=$(ls -ap "${srcDir}" | grep -v /)
+  for f in ${files}; do
+    if [ -f "${destDir}/${f}" ]; then
+      if ! ask "Do you want overwrite ${f}?"; then
+        continue
+      fi
+    fi
 
-		if ${dryrun}; then
-			echo "Copy ${destDir}/${f}"
-		else
-			rm -rf "${destDir}/${f}.backup"
-			if [ -f "${destDir}/${f}" ]; then
-				mv "${destDir}/${f}" "${destDir}/${f}.backup"
-			fi
+    if ${dryrun}; then
+      echo "Copy ${destDir}/${f}"
+    else
+      rm -rf "${destDir}/${f}.backup"
+      if [ -f "${destDir}/${f}" ]; then
+        mv "${destDir}/${f}" "${destDir}/${f}.backup"
+      fi
 
-			cp "${srcDir}/${f}" "${destDir}/${f}"
-		fi
-	done
+      cp "${srcDir}/${f}" "${destDir}/${f}"
+    fi
+  done
 }
 
 copy_dirs() {
-	srcDir="$1"
-	destDir="$2"
+  srcDir="$1"
+  destDir="$2"
 
-	dirs=$(ls "${srcDir}")
-	for d in ${dirs}; do
-		if [ -d "${destDir}/${d}" ]; then
-			if ! ask "Do you want overwrite ${destDir}/${d}?"; then
-				contine
-			fi
-		fi
+  dirs=$(ls "${srcDir}")
+  for d in ${dirs}; do
+    if [ -d "${destDir}/${d}" ]; then
+      if ! ask "Do you want overwrite ${destDir}/${d}?"; then
+        contine
+      fi
+    fi
 
-		if ${dryrun}; then
-			echo "Copy ${destDir}/${d}"
-		else
-			rm -rf "${destDir}/${d}.backup"
-			mv "${destDir}/${d}" "${destDir}/${d}.backup"
-			cp -r "${srcDir}/${d}" "${destDir}/"
-		fi
-	done
+    if ${dryrun}; then
+      echo "Copy ${destDir}/${d}"
+    else
+      rm -rf "${destDir}/${d}.backup"
+      mv "${destDir}/${d}" "${destDir}/${d}.backup"
+      cp -r "${srcDir}/${d}" "${destDir}/"
+    fi
+  done
 }
 
 main() {
-	install 'Common packages?' "${common_pkgs[@]}"
-	install 'Keyboard packages?' "${keyboard_pkgs[@]}"
-	install 'Termial packages?' "${terminal_pkgs[@]}"
-	install 'Message packages?' "${message_pkgs[@]}"
-	install 'Email packages?' "${email_pkgs[@]}"
-	install 'Office packages?' "${office_pkgs[@]}"
-	install 'Development packages?' "${dev_pkgs[@]}"
-	install 'Neovim packages?' "${nvim_pkgs[@]}"
+  install 'Common packages?' "${common_pkgs[@]}"
+  install 'Keyboard packages?' "${keyboard_pkgs[@]}"
+  install 'Termial packages?' "${terminal_pkgs[@]}"
+  install 'Message packages?' "${message_pkgs[@]}"
+  install 'Email packages?' "${email_pkgs[@]}"
+  install 'Office packages?' "${office_pkgs[@]}"
+  install 'Development packages?' "${dev_pkgs[@]}"
+  install 'Neovim packages?' "${nvim_pkgs[@]}"
 
-	# # Tmux plugin manager
-	install_git tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-	#
-	# # Multiple runtime version manager
-	install_git asdf-vm/asdf.git "$HOME/.asdf"
-	#
-	# # Add Asdf-vm plugins
-	setup_asdf
+  # # Tmux plugin manager
+  install_git tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+  #
+  # # Multiple runtime version manager
+  install_git asdf-vm/asdf.git "$HOME/.asdf"
+  #
+  # # Add Asdf-vm plugins
+  setup_asdf
 
-	# Copy config files
-	copy_files ./home "$HOME"
+  # Copy config files
+  copy_files ./home "$HOME"
 
-	# Copy config dirs
-	copy_dirs "./home/.config" "$HOME/.config"
+  # Copy config dirs
+  copy_dirs "./home/.config" "$HOME/.config"
 
-	echo '==> Done!'
+  echo '==> Done!'
 }
 
 main "$*"
