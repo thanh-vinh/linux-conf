@@ -1,0 +1,10 @@
+[
+  {
+    "bindings": {
+      "ctrl-g": [
+        "workspace::SendKeystrokes",
+        ": new center terminal enter lazygit enter"
+      ]
+    }
+  }
+]
