@@ -450,7 +450,7 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id sleep 3 && fcitx5
 exec --no-startup-id sleep 5 && firefox
 exec --no-startup-id sleep 3 && telegram-desktop -startintray
-# exec --no-startup-id sleep 8 && xinput set-prop 11 340 0.8
+# exec --no-startup-id sleep 8 && xinput set-prop 'Elan Touchpad' 'libinput Accel Speed' 0.8
 
 # Applet
 #exec --no-startup-id nm-applet --indicator 
