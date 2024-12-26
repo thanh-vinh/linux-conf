@@ -1,4 +1,3 @@
-function g --wraps='git status' --description 'alias g=git status'
-  git status $argv
-        
+function g -d 'git status'
+    git status $argv
 end

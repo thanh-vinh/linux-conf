@@ -1,4 +1,3 @@
-function p --wraps=podman --description 'alias p=podman'
-  podman $argv
-        
+function p -d podman
+    podman $argv
 end

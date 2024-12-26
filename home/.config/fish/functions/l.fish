@@ -1,4 +1,3 @@
-function l --wraps=lazygit --description 'alias l=lazygit'
-  lazygit $argv
-        
+function l -d lazygit
+    lazygit $argv
 end

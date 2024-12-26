@@ -1,4 +1,3 @@
-function h --wraps=helm --wraps=htop --description 'alias h=htop'
-  htop $argv
-        
+function h -d htop
+    htop $argv
 end

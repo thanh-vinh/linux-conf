@@ -1,4 +1,3 @@
-function gp --wraps='git pull' --description 'alias gp=git pull'
-  git pull $argv
-        
+function gp -d 'git pull'
+    git pull $argv
 end

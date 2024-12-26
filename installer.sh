@@ -35,6 +35,7 @@ keyboard_pkgs=(
 
 terminal_pkgs=(
   fish
+  fisher
   xfce4-terminal
   ttf-jetbrains-mono-nerd
   tmux

@@ -1,4 +1,3 @@
-function pr --wraps='podman run --rm' --description 'alias pr=podman run --rm'
-  podman run --rm -it $argv
-        
+function pr -d 'podman run -it --rm'
+    podman run -it --rm $argv
 end

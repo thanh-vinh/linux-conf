@@ -1,7 +1,0 @@
-#!/bin/sh
-
-vm_name="{$1:Google Nexus 4}"
-
-echo "Launch Genymotion emulator: ${vm_name}"
-
-/opt/genymotion/player -n "'${vm_name}'" -s

@@ -1,4 +1,3 @@
-function b --wraps=btop --description 'alias b=btop'
-  btop $argv
-        
+function b -d btop
+    btop $argv
 end

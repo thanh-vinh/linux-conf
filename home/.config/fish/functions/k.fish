@@ -1,4 +1,3 @@
-function k --wraps=kubectl --description 'alias k=kubectl'
-  kubectl $argv
-        
+function k -d kubectl
+    kubectl $argv
 end

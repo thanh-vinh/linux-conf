@@ -1,4 +1,3 @@
-function t --wraps=tmux --description 'alias t=tmux'
-  tmux $argv
-        
+function t -d terrafrom
+    terraform $argv
 end
