@@ -42,11 +42,12 @@ terminal_pkgs=(
 )
 
 message_pkgs=(
-  telegram-desktop-bin
+  telegram-desktop
 )
 
 email_pkgs=(
-  evolution
+  thunderbird
+  # evolution
   #geary
   # mailspring-bin
 )
