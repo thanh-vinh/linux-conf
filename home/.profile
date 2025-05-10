@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-# export TERMINAL=xfce4-terminal
+export TERMINAL=xfce4-terminal
 # export QT_QPA_PLATFORMTHEME=qt5ct
 # export QT_QPA_PLATFORMTHEME=qt6ct
 
@@ -13,18 +13,17 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-# flutter chrome
-export CHROME_EXECUTABLE=/usr/bin/firefox
+# Local bins
+export PATH="$PATH:$HOME/.local/bin"
 
 # asdf-vm
-source "$HOME/.asdf/asdf.sh"
+export PATH="$PATH:$HOME/.asdf/shims"
 
-# go, flutter, rust
+# go, flutter
+export PATH="$PATH:$HOME/go/bin:$HOME/.pub-cache/bin"
+export JAVA_HOME=/usr/lib/jvm/default-runtime
 export GOBIN=$HOME/.local/bin
-export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.pub-cache/bin:$HOME/.cargo/bin"
-
-# OpenAI cli
-# export OPENAI_KEY=
+export CHROME_EXECUTABLE=/usr/bin/firefox
 
 # An issue with webkit2gtk being broken under 2.44 with Nvidia GPUs
 # export WEBKIT_DISABLE_DMABUF_RENDERER=1

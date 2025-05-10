@@ -158,7 +158,8 @@ install_git() {
 }
 
 setup_asdf() {
-  source "$HOME/.asdf/asdf.sh"
+  # curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep linux
+  # source "$HOME/.asdf/asdf.sh" # pre v0.16
 
   # Asdf plugins
   asdf update
@@ -166,10 +167,13 @@ setup_asdf() {
   asdf plugin add golang
   asdf plugin add rust
   asdf plugin add flutter
+  asdf plugin add bun
+  asdf plugin add godot https://github.com/ez-connect/asdf-godot.git
 
   # Autocomplete for fish
   mkdir -p ~/.config/fish/completions
-  ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions/
+  # ln -sf ~/.asdf/completions/asdf.fish ~/.config/fish/completions/ # pre v0.16
+  asdf completion fish >~/.config/fish/completions/asdf.fish
 }
 
 copy_files() {
@@ -229,11 +233,12 @@ main() {
   install 'Development packages?' "${dev_pkgs[@]}"
   install 'Neovim packages?' "${nvim_pkgs[@]}"
 
-  # # Tmux plugin manager
+  # Tmux plugin manager
+
   install_git tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
   #
   # # Multiple runtime version manager
-  install_git asdf-vm/asdf.git "$HOME/.asdf"
+  # install_git asdf-vm/asdf.git "$HOME/.asdf"
   #
   # # Add Asdf-vm plugins
   setup_asdf
