@@ -1,6 +1,6 @@
 #!/bin/env sh
 
-install_asdf() {
+install() {
   . "$(dirname "$0")/git.sh"
 
   filename=$(download_github_latest_release 'asdf-vm/asdf' 'linux-amd64.tar.gz$')
@@ -10,7 +10,7 @@ install_asdf() {
   rm "${filename}"
 }
 
-setup_asdf() {
+setup() {
   asdf plugin add nodejs
   asdf plugin add bun
   asdf plugin add golang
@@ -25,5 +25,5 @@ setup_asdf() {
   # asdf completion fish >~/.config/fish/completions/asdf.fish
 }
 
-install_asdf
-setup_asdf
+install
+setup
