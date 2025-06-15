@@ -10,12 +10,12 @@
 # assign tags or translations to each profile
 declare -A tags
 tags=(
-    [performance]="Performance"
-    [balanced]="Balanced"
-    [power - saver]="Power saver"
+  [performance]="Performance"
+  [balanced]="Balanced"
+  [power-saver]="Power saver"
 )
 
-# Get current profile
+# Get current profile 
 current_profile=$(/usr/bin/powerprofilesctl get)
 
 # Get tag from the array

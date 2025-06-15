@@ -24,6 +24,10 @@ common_pkgs=(
 
   #i3wm
   autotiling
+
+  # grub
+  grub-btrfs
+  inotify-tools
 )
 
 keyboard_pkgs=(
